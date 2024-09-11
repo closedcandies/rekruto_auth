@@ -101,7 +101,7 @@ html_template = '''
 </html>
 '''
 
-@app.route('/home')
+@app.route('/')
 def generate_code():
     global current_sid
     session_code = int(request.args.get('sid', 'no_sid'))
