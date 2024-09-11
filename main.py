@@ -3,7 +3,7 @@ import random
 
 app = Flask(__name__)
 
-current_sid = 1234
+current_sid = '1234'
 LOGIN = 'rekruto'
 PASSWORD = '12345'
 
@@ -104,11 +104,11 @@ html_template = '''
 @app.route('/')
 def generate_code():
     global current_sid
-    session_code = int(request.args.get('sid', 'no_sid'))
+    session_code = request.args.get('sid', 'no_sid')
     if session_code != current_sid:
         return redirect(url_for('login'))
     else:
-        current_sid = random.randint(1000, 9999)
+        current_sid = str(random.randint(1000, 9999))
         code = random.randint(1000, 9999)
         return render_template_string(html_template, code=code)
 
